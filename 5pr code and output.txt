@@ -1,0 +1,126 @@
+import java.util.Scanner;
+
+// First interface
+interface CardPayment {
+    void processCardPayment(double amount);
+    void refundCardPayment(double amount);
+}
+
+// Second interface
+interface UPIPayment {
+    void processUPIPayment(double amount);
+    void refundUPIPayment(double amount);
+}
+
+// Class implementing both interfaces
+class PaymentGateway implements CardPayment, UPIPayment {
+    
+    // Card payment method
+    public void processCardPayment(double amount) {
+        System.out.println("Card payment successful!");
+        System.out.println("Amount Paid: Rs. " + amount);
+    }
+
+    // Card refund method
+    public void refundCardPayment(double amount) {
+        System.out.println("Card refund successful!");
+        System.out.println("Refund Amount: Rs. " + amount);
+    }
+
+    // UPI payment method
+    public void processUPIPayment(double amount) {
+        System.out.println("UPI payment successful!");
+        System.out.println("Amount Paid: Rs. " + amount);
+    }
+
+    // UPI refund method
+    public void refundUPIPayment(double amount) {
+        System.out.println("UPI refund successful!");
+        System.out.println("Refund Amount: Rs. " + amount);
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        PaymentGateway payment = new PaymentGateway();
+        int choice;
+        double amount;
+        
+        do {
+            System.out.println("\n===== ONLINE PAYMENT SYSTEM =====");
+            System.out.println("1. Process Card Payment");
+            System.out.println("2. Refund Card Payment");
+            System.out.println("3. Process UPI Payment");
+            System.out.println("4. Refund UPI Payment");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter amount: Rs. ");
+                    amount = sc.nextDouble();
+                    payment.processCardPayment(amount);
+                    break;
+                case 2:
+                    System.out.print("Enter refund amount: Rs. ");
+                    amount = sc.nextDouble();
+                    payment.refundCardPayment(amount);
+                    break;
+                case 3:
+                    System.out.print("Enter amount: Rs. ");
+                    amount = sc.nextDouble();
+                    payment.processUPIPayment(amount);
+                    break;
+                case 4:
+                    System.out.print("Enter refund amount: Rs. ");
+                    amount = sc.nextDouble();
+                    payment.refundUPIPayment(amount);
+                    break;
+                case 5:
+                    System.out.println("Thank you!");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+        } while (choice != 5);
+        
+        sc.close();
+    }
+}
+
+
+output :
+
+===== ONLINE PAYMENT SYSTEM =====
+1. Process Card Payment
+2. Refund Card Payment
+3. Process UPI Payment
+4. Refund UPI Payment
+5. Exit
+Enter your choice: 1
+Enter amount: Rs. 1500
+Card payment successful!
+Amount Paid: Rs. 1500.0
+
+===== ONLINE PAYMENT SYSTEM =====
+1. Process Card Payment
+2. Refund Card Payment
+3. Process UPI Payment
+4. Refund UPI Payment
+5. Exit
+Enter your choice: 3
+Enter amount: Rs. 500
+UPI payment successful!
+Amount Paid: Rs. 500.0
+
+===== ONLINE PAYMENT SYSTEM =====
+1. Process Card Payment
+2. Refund Card Payment
+3. Process UPI Payment
+4. Refund UPI Payment
+5. Exit
+Enter your choice: 5
+Thank you!
